@@ -1,0 +1,580 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>data_aug.data_aug &mdash; Data Augmentation For Object Detection 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="data_aug.data_aug" href="bbox_util.html" />
+    <link rel="prev" title="Data Augmentation for Object Detection" href="index.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Data Augmentation For Object Detection
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Package Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">data_aug.data_aug</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#transforms-not-involving-change-in-bounding-boxes">Transforms Not Involving change in Bounding Boxes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#transforms-involving-change-in-bounding-boxes">Transforms Involving Change in Bounding Boxes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#input-preprocessing-based-transforms">Input Preprocessing based Transforms</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bbox_util.html">data_aug.data_aug</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Data Augmentation For Object Detection</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>data_aug.data_aug</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/data_aug.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="data-aug-data-aug">
+<h1>data_aug.data_aug<a class="headerlink" href="#data-aug-data-aug" title="Permalink to this headline">¶</a></h1>
+<p>data_aug contains common image and bounding boxes transforms. They can be chained together using <a class="reference internal" href="#data_aug.data_aug.Sequence" title="data_aug.data_aug.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a></p>
+<dl class="class">
+<dt id="data_aug.data_aug.Sequence">
+<em class="property">class </em><code class="descclassname">data_aug.data_aug.</code><code class="descname">Sequence</code><span class="sig-paren">(</span><em>augmentations</em>, <em>probs=1</em><span class="sig-paren">)</span><a class="headerlink" href="#data_aug.data_aug.Sequence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialise Sequence object</p>
+<p>Apply a Sequence of transformations to the images/boxes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>augemnetations</strong> (<em>list</em>) – List containing Transformation Objects in Sequence they are to be
+applied</li>
+<li><strong>probs</strong> (<em>int</em><em> or </em><em>list</em>) – If <strong>int</strong>, the probability with which each of the transformation will
+be applied. If <strong>list</strong>, the length must be equal to <em>augmentations</em>.
+Each element of this list is the probability with which each
+corresponding transformation is applied</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Sequence Object</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#data_aug.data_aug.Sequence" title="data_aug.data_aug.Sequence">Sequence</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div class="section" id="transforms-not-involving-change-in-bounding-boxes">
+<h2>Transforms Not Involving change in Bounding Boxes<a class="headerlink" href="#transforms-not-involving-change-in-bounding-boxes" title="Permalink to this headline">¶</a></h2>
+<p>These transforms should be applied before the ones involving change in bounding boxes</p>
+<dl class="class">
+<dt id="data_aug.data_aug.RandomHSV">
+<em class="property">class </em><code class="descclassname">data_aug.data_aug.</code><code class="descname">RandomHSV</code><span class="sig-paren">(</span><em>hue=None</em>, <em>saturation=None</em>, <em>brightness=None</em><span class="sig-paren">)</span><a class="headerlink" href="#data_aug.data_aug.RandomHSV" title="Permalink to this definition">¶</a></dt>
+<dd><p>HSV Transform to vary hue saturation and brightness</p>
+<p>Hue has a range of 0-179
+Saturation and Brightness have a range of 0-255.
+Chose the amount you want to change thhe above quantities accordingly.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>hue</strong> (<em>None</em><em> or </em><em>int</em><em> or </em><em>tuple</em><em> (</em><em>int</em><em>)</em>) – If None, the hue of the image is left unchanged. If int,
+a random int is uniformly sampled from (-hue, hue) and added to the
+hue of the image. If tuple, the int is sampled from the range
+specified by the tuple.</li>
+<li><strong>saturation</strong> (<em>None</em><em> or </em><em>int</em><em> or </em><em>tuple</em><em>(</em><em>int</em><em>)</em>) – If None, the saturation of the image is left unchanged. If int,
+a random int is uniformly sampled from (-saturation, saturation)
+and added to the hue of the image. If tuple, the int is sampled
+from the range  specified by the tuple.</li>
+<li><strong>brightness</strong> (<em>None</em><em> or </em><em>int</em><em> or </em><em>tuple</em><em>(</em><em>int</em><em>)</em>) – If None, the brightness of the image is left unchanged. If int,
+a random int is uniformly sampled from (-brightness, brightness)
+and added to the hue of the image. If tuple, the int is sampled
+from the range  specified by the tuple.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><em>numpy.ndaaray</em> – Transformed image in the numpy format of shape <cite>HxWxC</cite></li>
+<li><em>numpy.ndarray</em> – Resized bounding box co-ordinates of the format <cite>n x 4</cite> where n is
+number of bounding boxes and 4 represents <cite>x1,y1,x2,y2</cite> of the box</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="transforms-involving-change-in-bounding-boxes">
+<h2>Transforms Involving Change in Bounding Boxes<a class="headerlink" href="#transforms-involving-change-in-bounding-boxes" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="data_aug.data_aug.RandomHorizontalFlip">
+<em class="property">class </em><code class="descclassname">data_aug.data_aug.</code><code class="descname">RandomHorizontalFlip</code><span class="sig-paren">(</span><em>p=0.5</em><span class="sig-paren">)</span><a class="headerlink" href="#data_aug.data_aug.RandomHorizontalFlip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Randomly horizontally flips the Image with the probability <em>p</em></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>p</strong> (<em>float</em>) – The probability with which the image is flipped</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="simple">
+<li><em>numpy.ndaaray</em> – Flipped image in the numpy format of shape <cite>HxWxC</cite></li>
+<li><em>numpy.ndarray</em> – Tranformed bounding box co-ordinates of the format <cite>n x 4</cite> where n is
+number of bounding boxes and 4 represents <cite>x1,y1,x2,y2</cite> of the box</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="data_aug.data_aug.RandomRotate">
+<em class="property">class </em><code class="descclassname">data_aug.data_aug.</code><code class="descname">RandomRotate</code><span class="sig-paren">(</span><em>angle=10</em><span class="sig-paren">)</span><a class="headerlink" href="#data_aug.data_aug.RandomRotate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Randomly rotates an image</p>
+<p>Bounding boxes which have an area of less than 25% in the remaining in the
+transformed image is dropped. The resolution is maintained, and the remaining
+area if any is filled by black color.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>angle</strong> (<em>float</em><em> or </em><em>tuple</em><em>(</em><em>float</em><em>)</em>) – if <strong>float</strong>, the image is rotated by a factor drawn
+randomly from a range (-<cite>angle</cite>, <cite>angle</cite>). If <strong>tuple</strong>,
+the <cite>angle</cite> is drawn randomly from values specified by the
+tuple</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="simple">
+<li><em>numpy.ndaaray</em> – Rotated image in the numpy format of shape <cite>HxWxC</cite></li>
+<li><em>numpy.ndarray</em> – Tranformed bounding box co-ordinates of the format <cite>n x 4</cite> where n is
+number of bounding boxes and 4 represents <cite>x1,y1,x2,y2</cite> of the box</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="data_aug.data_aug.RandomScale">
+<em class="property">class </em><code class="descclassname">data_aug.data_aug.</code><code class="descname">RandomScale</code><span class="sig-paren">(</span><em>scale=0.2</em>, <em>diff=False</em><span class="sig-paren">)</span><a class="headerlink" href="#data_aug.data_aug.RandomScale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Randomly scales an image</p>
+<p>Bounding boxes which have an area of less than 25% in the remaining in the
+transformed image is dropped. The resolution is maintained, and the remaining
+area if any is filled by black color.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>scale</strong> (<em>float</em><em> or </em><em>tuple</em><em>(</em><em>float</em><em>)</em>) – if <strong>float</strong>, the image is scaled by a factor drawn
+randomly from a range (1 - <cite>scale</cite> , 1 + <cite>scale</cite>). If <strong>tuple</strong>,
+the <cite>scale</cite> is drawn randomly from values specified by the
+tuple</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="simple">
+<li><em>numpy.ndaaray</em> – Scaled image in the numpy format of shape <cite>HxWxC</cite></li>
+<li><em>numpy.ndarray</em> – Tranformed bounding box co-ordinates of the format <cite>n x 4</cite> where n is
+number of bounding boxes and 4 represents <cite>x1,y1,x2,y2</cite> of the box</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="data_aug.data_aug.RandomShear">
+<em class="property">class </em><code class="descclassname">data_aug.data_aug.</code><code class="descname">RandomShear</code><span class="sig-paren">(</span><em>shear_factor=0.2</em><span class="sig-paren">)</span><a class="headerlink" href="#data_aug.data_aug.RandomShear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Randomly shears an image in horizontal direction</p>
+<p>Bounding boxes which have an area of less than 25% in the remaining in the
+transformed image is dropped. The resolution is maintained, and the remaining
+area if any is filled by black color.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>shear_factor</strong> (<em>float</em><em> or </em><em>tuple</em><em>(</em><em>float</em><em>)</em>) – if <strong>float</strong>, the image is sheared horizontally by a factor drawn
+randomly from a range (-<cite>shear_factor</cite>, <cite>shear_factor</cite>). If <strong>tuple</strong>,
+the <cite>shear_factor</cite> is drawn randomly from values specified by the
+tuple</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="simple">
+<li><em>numpy.ndaaray</em> – Sheared image in the numpy format of shape <cite>HxWxC</cite></li>
+<li><em>numpy.ndarray</em> – Tranformed bounding box co-ordinates of the format <cite>n x 4</cite> where n is
+number of bounding boxes and 4 represents <cite>x1,y1,x2,y2</cite> of the box</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="data_aug.data_aug.RandomTranslate">
+<em class="property">class </em><code class="descclassname">data_aug.data_aug.</code><code class="descname">RandomTranslate</code><span class="sig-paren">(</span><em>translate=0.2</em>, <em>diff=False</em><span class="sig-paren">)</span><a class="headerlink" href="#data_aug.data_aug.RandomTranslate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Randomly Translates the image</p>
+<p>Bounding boxes which have an area of less than 25% in the remaining in the
+transformed image is dropped. The resolution is maintained, and the remaining
+area if any is filled by black color.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>translate</strong> (<em>float</em><em> or </em><em>tuple</em><em>(</em><em>float</em><em>)</em>) – if <strong>float</strong>, the image is translated by a factor drawn
+randomly from a range (1 - <cite>translate</cite> , 1 + <cite>translate</cite>). If <strong>tuple</strong>,
+<cite>translate</cite> is drawn randomly from values specified by the
+tuple</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="simple">
+<li><em>numpy.ndaaray</em> – Translated image in the numpy format of shape <cite>HxWxC</cite></li>
+<li><em>numpy.ndarray</em> – Tranformed bounding box co-ordinates of the format <cite>n x 4</cite> where n is
+number of bounding boxes and 4 represents <cite>x1,y1,x2,y2</cite> of the box</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="data_aug.data_aug.HorizontalFlip">
+<em class="property">class </em><code class="descclassname">data_aug.data_aug.</code><code class="descname">HorizontalFlip</code><a class="headerlink" href="#data_aug.data_aug.HorizontalFlip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Randomly horizontally flips the Image with the probability <em>p</em></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>p</strong> (<em>float</em>) – The probability with which the image is flipped</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="simple">
+<li><em>numpy.ndaaray</em> – Flipped image in the numpy format of shape <cite>HxWxC</cite></li>
+<li><em>numpy.ndarray</em> – Tranformed bounding box co-ordinates of the format <cite>n x 4</cite> where n is
+number of bounding boxes and 4 represents <cite>x1,y1,x2,y2</cite> of the box</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="data_aug.data_aug.Rotate">
+<em class="property">class </em><code class="descclassname">data_aug.data_aug.</code><code class="descname">Rotate</code><span class="sig-paren">(</span><em>angle</em><span class="sig-paren">)</span><a class="headerlink" href="#data_aug.data_aug.Rotate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rotates an image</p>
+<p>Bounding boxes which have an area of less than 25% in the remaining in the
+transformed image is dropped. The resolution is maintained, and the remaining
+area if any is filled by black color.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>angle</strong> (<em>float</em>) – The angle by which the image is to be rotated</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="simple">
+<li><em>numpy.ndaaray</em> – Rotated image in the numpy format of shape <cite>HxWxC</cite></li>
+<li><em>numpy.ndarray</em> – Tranformed bounding box co-ordinates of the format <cite>n x 4</cite> where n is
+number of bounding boxes and 4 represents <cite>x1,y1,x2,y2</cite> of the box</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="data_aug.data_aug.Scale">
+<em class="property">class </em><code class="descclassname">data_aug.data_aug.</code><code class="descname">Scale</code><span class="sig-paren">(</span><em>scale_x=0.2</em>, <em>scale_y=0.2</em><span class="sig-paren">)</span><a class="headerlink" href="#data_aug.data_aug.Scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scales the image</p>
+<p>Bounding boxes which have an area of less than 25% in the remaining in the
+transformed image is dropped. The resolution is maintained, and the remaining
+area if any is filled by black color.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>scale_x</strong> (<em>float</em>) – The factor by which the image is scaled horizontally</li>
+<li><strong>scale_y</strong> (<em>float</em>) – The factor by which the image is scaled vertically</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><em>numpy.ndaaray</em> – Scaled image in the numpy format of shape <cite>HxWxC</cite></li>
+<li><em>numpy.ndarray</em> – Tranformed bounding box co-ordinates of the format <cite>n x 4</cite> where n is
+number of bounding boxes and 4 represents <cite>x1,y1,x2,y2</cite> of the box</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="data_aug.data_aug.Shear">
+<em class="property">class </em><code class="descclassname">data_aug.data_aug.</code><code class="descname">Shear</code><span class="sig-paren">(</span><em>shear_factor=0.2</em><span class="sig-paren">)</span><a class="headerlink" href="#data_aug.data_aug.Shear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shears an image in horizontal direction</p>
+<p>Bounding boxes which have an area of less than 25% in the remaining in the
+transformed image is dropped. The resolution is maintained, and the remaining
+area if any is filled by black color.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>shear_factor</strong> (<em>float</em>) – Factor by which the image is sheared in the x-direction</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="simple">
+<li><em>numpy.ndaaray</em> – Sheared image in the numpy format of shape <cite>HxWxC</cite></li>
+<li><em>numpy.ndarray</em> – Tranformed bounding box co-ordinates of the format <cite>n x 4</cite> where n is
+number of bounding boxes and 4 represents <cite>x1,y1,x2,y2</cite> of the box</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="data_aug.data_aug.Translate">
+<em class="property">class </em><code class="descclassname">data_aug.data_aug.</code><code class="descname">Translate</code><span class="sig-paren">(</span><em>translate_x=0.2</em>, <em>translate_y=0.2</em>, <em>diff=False</em><span class="sig-paren">)</span><a class="headerlink" href="#data_aug.data_aug.Translate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Randomly Translates the image</p>
+<p>Bounding boxes which have an area of less than 25% in the remaining in the
+transformed image is dropped. The resolution is maintained, and the remaining
+area if any is filled by black color.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>translate</strong> (<em>float</em><em> or </em><em>tuple</em><em>(</em><em>float</em><em>)</em>) – if <strong>float</strong>, the image is translated by a factor drawn
+randomly from a range (1 - <cite>translate</cite> , 1 + <cite>translate</cite>). If <strong>tuple</strong>,
+<cite>translate</cite> is drawn randomly from values specified by the
+tuple</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="simple">
+<li><em>numpy.ndaaray</em> – Translated image in the numpy format of shape <cite>HxWxC</cite></li>
+<li><em>numpy.ndarray</em> – Tranformed bounding box co-ordinates of the format <cite>n x 4</cite> where n is
+number of bounding boxes and 4 represents <cite>x1,y1,x2,y2</cite> of the box</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="input-preprocessing-based-transforms">
+<h2>Input Preprocessing based Transforms<a class="headerlink" href="#input-preprocessing-based-transforms" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="data_aug.data_aug.Resize">
+<em class="property">class </em><code class="descclassname">data_aug.data_aug.</code><code class="descname">Resize</code><span class="sig-paren">(</span><em>inp_dim</em><span class="sig-paren">)</span><a class="headerlink" href="#data_aug.data_aug.Resize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resize the image in accordance to <cite>image_letter_box</cite> function in darknet</p>
+<p>The aspect ratio is maintained. The longer side is resized to the input
+size of the network, while the remaining space on the shorter side is filled
+with black color. <strong>This should be the last transform</strong></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>inp_dim</strong> (<em>tuple</em><em>(</em><em>int</em><em>)</em>) – tuple containing the size to which the image will be resized.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><ul class="simple">
+<li><em>numpy.ndaaray</em> – Sheared image in the numpy format of shape <cite>HxWxC</cite></li>
+<li><em>numpy.ndarray</em> – Resized bounding box co-ordinates of the format <cite>n x 4</cite> where n is
+number of bounding boxes and 4 represents <cite>x1,y1,x2,y2</cite> of the box</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="bbox_util.html" class="btn btn-neutral float-right" title="data_aug.data_aug" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Data Augmentation for Object Detection" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Ayoosh Kathuria.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
