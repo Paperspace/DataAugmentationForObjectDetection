@@ -28,7 +28,7 @@ We support a variety of data augmentations, like.
 
 A quick start tutorial can be found in the file `quick-start.ipynb` in this repo.
 
-A list of all possible transforms and extensive documentation can be found in the `docs`
+A list of all possible transforms and extensive documentation can be found in by opening `docs/build/html/index.html` in your browser.
 
 
 
