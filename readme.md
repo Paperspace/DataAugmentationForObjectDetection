@@ -2,6 +2,11 @@
 
 Accompanying code for the [Paperspace tutorial series on adapting data augmentation methods for object detection tasks]()
 
+## Dependencies
+1. OpenCV 3.x
+2. Numpy 
+3. Matplotlib
+
 We support a variety of data augmentations, like. 
 
 ### Horizontal Flipping 
