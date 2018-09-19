@@ -10,7 +10,8 @@ Accompanying code for the [Paperspace tutorial series on adapting data augmentat
 We support a variety of data augmentations, like.
 
 ### Horizontal Flipping
-![Horizontal Flip](https://raw.githubusercontent.com/ayooshkathuria/Data-Augmentation-for-Object-Detection/master/Images/hflip.png?token=AVrWFyRVnW0ZyyiAAjSWuewDujvpSFTkks5boLdDwA%3D%3D)
+![Horizontal Flip](images/hflip.png)
+
 ### Scaling
 ![Scaling](https://raw.githubusercontent.com/ayooshkathuria/Data-Augmentation-for-Object-Detection/master/Images/scale_aug.png?token=AVrWFxbzChIuUno6yOFMxo66mKtziDvwks5boLfxwA%3D%3D)
 
