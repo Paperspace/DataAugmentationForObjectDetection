@@ -13,19 +13,19 @@ We support a variety of data augmentations, like.
 ![Horizontal Flip](Images/hflip.png)
 
 ### Scaling
-![Scaling](https://raw.githubusercontent.com/ayooshkathuria/Data-Augmentation-for-Object-Detection/master/Images/scale_aug.png?token=AVrWFxbzChIuUno6yOFMxo66mKtziDvwks5boLfxwA%3D%3D)
+![Scaling](Images/scale_aug.png)
 
 ### Translation
-![Translation](https://raw.githubusercontent.com/ayooshkathuria/Data-Augmentation-for-Object-Detection/master/Images/transl_aug.png?token=AVrWF7QvE4Q5tVom71L424puYpS0l9zSks5boLhKwA%3D%3D)
+![Translation](Images/transl_aug.png)
 
 ### Rotation
-![Rotation](https://raw.githubusercontent.com/ayooshkathuria/Data-Augmentation-for-Object-Detection/master/Images/rotate.png?token=AVrWF89KGhcZzhOG9RxH1gBveXjRaQGNks5boLfbwA%3D%3D)
+![Rotation](Images/rotate.png)
 
 ### Shearing
-![Shearing](https://raw.githubusercontent.com/ayooshkathuria/Data-Augmentation-for-Object-Detection/master/Images/shear_box.png?token=AVrWFxJhfYZoxI5ipwxatGMbrDoMfcwBks5boLgswA%3D%3D)
+![Shearing](Images/shear_box.png)
 
 ### Resizing
-![Resizing](https://raw.githubusercontent.com/ayooshkathuria/Data-Augmentation-for-Object-Detection/master/Images/resize.png?token=AVrWF2JYmMhIisAcUnTuMwQverEwuw15ks5boLgVwA%3D%3D)
+![Resizing](Images/resize.png)
 
 
 ## Quick Start
