@@ -41,7 +41,7 @@ class RandomHorizontalFlip(object):
             if random.random() < self.p:
                 img = img[:, ::-1, :]
                 # this line chenged from bboxes[:, [0, 2]]+=2*(img_center[[0, 2]] - bboxes[:, [0, 2]]),casting='unsafe')
-                # to the following:
+                # to the following line:
 
                 bboxes[:, [0, 2]] =np.add(bboxes[:, [0, 2]],2*(img_center[[0, 2]] - bboxes[:, [0, 2]]),casting='unsafe')
 
