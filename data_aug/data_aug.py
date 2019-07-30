@@ -712,7 +712,9 @@ class Resize(object):
     
     
         scale = min(self.inp_dim/h, self.inp_dim/w)
-        bboxes[:,:4] *= (scale)
+        
+        # line changed from bboxes[:,:4]*=(scale)
+        bboxes[:,:4]=np.multiply(bboxes[:,:4] , (scale))
     
         new_w = scale*w
         new_h = scale*h
