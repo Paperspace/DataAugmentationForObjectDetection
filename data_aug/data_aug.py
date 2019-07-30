@@ -469,7 +469,10 @@ class RandomRotate(object):
     
         img = cv2.resize(img, (w,h))
     
-        new_bbox[:,:4] /= [scale_factor_x, scale_factor_y, scale_factor_x, scale_factor_y] 
+        # line new_bbox[:,:4] /= [scale_factor_x, scale_factor_y, scale_factor_x, scale_factor_y] changed to the following:
+        new_bbox[:,:4]=np.divide(new_bbox[:,:4],
+                                 [scale_factor_x, scale_factor_y, scale_factor_x, scale_factor_y] ,casting='unsafe')
+
     
         bboxes  = new_bbox
     
