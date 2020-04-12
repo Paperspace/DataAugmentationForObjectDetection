@@ -12,6 +12,9 @@ We support a variety of data augmentations, like.
 ### Horizontal Flipping
 ![Horizontal Flip](Images/hflip.png)
 
+### Vertical Flipping
+![Vertical Flip](Images/vflip.png)
+
 ### Scaling
 ![Scaling](Images/scale_aug.png)
 
