@@ -40,7 +40,10 @@ class RandomHorizontalFlip(object):
             img_center = np.hstack((img_center, img_center))
             if random.random() < self.p:
                 img = img[:, ::-1, :]
-                bboxes[:, [0, 2]] += 2*(img_center[[0, 2]] - bboxes[:, [0, 2]])
+                # this line chenged from bboxes[:, [0, 2]]+=2*(img_center[[0, 2]] - bboxes[:, [0, 2]])
+                # to the following line:
+
+                bboxes[:, [0, 2]] =np.add(bboxes[:, [0, 2]],2*(img_center[[0, 2]] - bboxes[:, [0, 2]]),casting='unsafe')
 
                 box_w = abs(bboxes[:, 0] - bboxes[:, 2])
 
@@ -466,7 +469,10 @@ class RandomRotate(object):
     
         img = cv2.resize(img, (w,h))
     
-        new_bbox[:,:4] /= [scale_factor_x, scale_factor_y, scale_factor_x, scale_factor_y] 
+        # line new_bbox[:,:4] /= [scale_factor_x, scale_factor_y, scale_factor_x, scale_factor_y] changed to the following:
+        new_bbox[:,:4]=np.divide(new_bbox[:,:4],
+                                 [scale_factor_x, scale_factor_y, scale_factor_x, scale_factor_y] ,casting='unsafe')
+
     
         bboxes  = new_bbox
     
@@ -706,7 +712,9 @@ class Resize(object):
     
     
         scale = min(self.inp_dim/h, self.inp_dim/w)
-        bboxes[:,:4] *= (scale)
+        
+        # line changed from bboxes[:,:4]*=(scale)
+        bboxes[:,:4]=np.multiply(bboxes[:,:4] , (scale))
     
         new_w = scale*w
         new_h = scale*h
